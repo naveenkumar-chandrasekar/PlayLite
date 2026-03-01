@@ -1,0 +1,12 @@
+{
+    "name": "playlite",
+    "version": "1.0.0",
+    "description": "Browser arcade with 22 games — no build step, native ES modules",
+    "type": "module",
+    "scripts": {
+        "dev": "npx serve . --cors -l 3000",
+        "preview": "npx serve . --cors -l 3000"
+    },
+    "keywords": ["games", "arcade", "browser", "vanilla-js"],
+    "license": "MIT"
+}
