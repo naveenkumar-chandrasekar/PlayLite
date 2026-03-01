@@ -346,5 +346,92 @@ export const GAMES = [
         category: 'puzzle',
         module: () => import('../games/MathGame.js'),
         previewHTML: `<div class="math-preview">2+2=?</div>`
+    },
+    {
+        id: 'stroop',
+        name: 'Stroop Test',
+        description: 'Name the ink color, ignore the word',
+        scoreLabel: 'Best Score',
+        scoreKey: 'stroop-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/Stroop.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;">
+                <div style="font-size:22px;font-weight:bold;color:#e74c3c;">BLUE</div>
+                <div style="font-size:12px;color:#aaa;">What color is the ink?</div>
+            </div>`
+    },
+    {
+        id: 'hanoi',
+        name: 'Tower of Hanoi',
+        description: 'Move all disks to the right peg',
+        scoreLabel: 'Best (moves)',
+        scoreKey: 'hanoi-best',
+        scoreDefault: null,
+        scoreFormat: (v) => v ? v + ' moves' : '--',
+        category: 'iq',
+        module: () => import('../games/TowerHanoi.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:12px;background:#1a1a2e;border-radius:10px;padding:10px;box-sizing:border-box;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                    <div style="width:50px;height:10px;background:#e74c3c;border-radius:3px;"></div>
+                    <div style="width:34px;height:10px;background:#e67e22;border-radius:3px;"></div>
+                    <div style="width:18px;height:10px;background:#f1c40f;border-radius:3px;"></div>
+                    <div style="width:60px;height:4px;background:#666;"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                    <div style="width:60px;height:4px;background:#666;margin-top:36px;"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                    <div style="width:60px;height:4px;background:#666;margin-top:36px;"></div>
+                </div>
+            </div>`
+    },
+    {
+        id: 'wordscramble',
+        name: 'Word Scramble',
+        description: 'Unscramble letters to form words',
+        scoreLabel: 'Best Score',
+        scoreKey: 'wordscramble-best',
+        scoreDefault: 0,
+        category: 'word',
+        module: () => import('../games/WordScramble.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;">
+                <div style="font-size:22px;font-weight:bold;color:#2ecc71;letter-spacing:4px;">TELAKN</div>
+                <div style="font-size:12px;color:#aaa;">Unscramble the word</div>
+            </div>`
+    },
+    {
+        id: 'nback',
+        name: 'N-Back',
+        description: 'Remember positions from N steps ago',
+        scoreLabel: 'Best Level',
+        scoreKey: 'nback-best',
+        scoreDefault: 1,
+        category: 'iq',
+        module: () => import('../games/NBack.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:90px;height:90px;">
+                    ${Array.from({length:9},(_,i)=>`<div style="background:${i===4?'#667eea':'#2a2a3e'};border-radius:4px;"></div>`).join('')}
+                </div>
+            </div>`
+    },
+    {
+        id: 'sequences',
+        name: 'Number Sequences',
+        description: 'Find the next number in the pattern',
+        scoreLabel: 'Best Score',
+        scoreKey: 'sequences-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/Sequences.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;">
+                <div style="color:#f1c40f;font-size:16px;font-weight:bold;">2, 4, 8, 16, ?</div>
+                <div style="color:#aaa;font-size:12px;">Find the pattern</div>
+            </div>`
     }
 ];
