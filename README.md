@@ -1,6 +1,6 @@
 # PlayLite
 
-**27 browser games. No downloads. No sign-up. Just play.**
+**37 browser games. No downloads. No sign-up. Just play.**
 
 🔗 **[play-lite.vercel.app](https://play-lite.vercel.app)**
 
@@ -16,7 +16,7 @@
 | Strategy | Tic Tac Toe, Connect Four, Rock Paper Scissors |
 | Reflex | Reaction Test, Color Match, Whack-a-Mole, Bubble Pop |
 | Memory | Simon Says |
-| IQ | Stroop Test, Tower of Hanoi, N-Back, Number Sequences |
+| IQ | Stroop Test, Tower of Hanoi, N-Back, Number Sequences, Odd One Out, Coding Speed, Word Analogy, Digit Span, Pattern Memory, Mental Arithmetic, Logic Reasoning, Visual Matrix, Spatial Rotation, Task Switch, Speed Match |
 
 ## Dev
 

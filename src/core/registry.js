@@ -433,5 +433,195 @@ export const GAMES = [
                 <div style="color:#f1c40f;font-size:16px;font-weight:bold;">2, 4, 8, 16, ?</div>
                 <div style="color:#aaa;font-size:12px;">Find the pattern</div>
             </div>`
+    },
+    {
+        id: 'oddoneout',
+        name: 'Odd One Out',
+        description: 'Find which item doesn\'t belong',
+        scoreLabel: 'Best Score',
+        scoreKey: 'oddoneout-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/OddOneOut.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:6px;padding:10px;box-sizing:border-box;">
+                <div style="display:flex;gap:6px;">
+                    <div style="background:#2d3561;color:#a5b0ff;padding:6px 10px;border-radius:6px;font-size:11px;">apple</div>
+                    <div style="background:#2d3561;color:#a5b0ff;padding:6px 10px;border-radius:6px;font-size:11px;">banana</div>
+                </div>
+                <div style="display:flex;gap:6px;">
+                    <div style="background:#2d3561;color:#a5b0ff;padding:6px 10px;border-radius:6px;font-size:11px;">grape</div>
+                    <div style="background:#7f1d1d;color:#fca5a5;padding:6px 10px;border-radius:6px;font-size:11px;">carrot</div>
+                </div>
+            </div>`
+    },
+    {
+        id: 'codingspeed',
+        name: 'Coding Speed',
+        description: 'Digit-symbol substitution test',
+        scoreLabel: 'Best Score',
+        scoreKey: 'codingspeed-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/CodingSpeed.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:6px;">${[1,2,3].map(i=>`<div style="background:#1c2438;border:1px solid rgba(129,140,248,0.2);border-radius:4px;padding:4px 8px;text-align:center;"><div style="color:#818cf8;font-size:10px;">${i}</div><div style="font-size:14px;">${['★','♦','♠'][i-1]}</div></div>`).join('')}</div>
+                <div style="font-size:2.5rem;color:#f1c40f;">♦</div>
+            </div>`
+    },
+    {
+        id: 'wordanalogy',
+        name: 'Word Analogy',
+        description: 'HOT:COLD :: BIG:? Verbal reasoning',
+        scoreLabel: 'Best Score',
+        scoreKey: 'wordanalogy-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/WordAnalogy.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;padding:10px;box-sizing:border-box;">
+                <div style="color:#a5b0ff;font-size:13px;font-weight:bold;">HOT : COLD</div>
+                <div style="color:#64748b;font-size:11px;">is to</div>
+                <div style="color:#fcd34d;font-size:13px;font-weight:bold;">BIG : ?</div>
+            </div>`
+    },
+    {
+        id: 'digitspan',
+        name: 'Digit Span',
+        description: 'Memorize and recall number sequences',
+        scoreLabel: 'Best Span',
+        scoreKey: 'digitspan-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/DigitSpan.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;">
+                <div style="font-size:2rem;font-weight:bold;letter-spacing:8px;color:#a5b0ff;">7 3 9</div>
+                <div style="font-size:12px;color:#64748b;">Remember & recall</div>
+            </div>`
+    },
+    {
+        id: 'patternmemory',
+        name: 'Pattern Memory',
+        description: 'Memorize and repeat spatial sequences',
+        scoreLabel: 'Best Span',
+        scoreKey: 'patternmemory-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/PatternMemory.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;">
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;width:100px;height:100px;">
+                    ${Array.from({length:16},(_,i)=>`<div style="background:${[1,5,10,14].includes(i)?'#6366f1':'#1c2438'};border-radius:3px;"></div>`).join('')}
+                </div>
+            </div>`
+    },
+    {
+        id: 'mentalarithmetic',
+        name: 'Mental Arithmetic',
+        description: 'Compute chained operations in your head',
+        scoreLabel: 'Best Score',
+        scoreKey: 'mentalarithmetic-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/MentalArithmetic.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:8px;padding:10px;box-sizing:border-box;">
+                <div style="color:#e2e8f0;font-size:13px;font-weight:bold;">12 + 7 − 4 × 2</div>
+                <div style="color:#fcd34d;font-size:16px;font-weight:bold;">= ?</div>
+            </div>`
+    },
+    {
+        id: 'logicreasoning',
+        name: 'Logic Reasoning',
+        description: 'Evaluate syllogisms: True, False, or Uncertain',
+        scoreLabel: 'Best Score',
+        scoreKey: 'logicreasoning-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/LogicReasoning.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:6px;padding:10px;box-sizing:border-box;text-align:center;">
+                <div style="color:#94a3b8;font-size:10px;">All A are B. All B are C.</div>
+                <div style="color:#fcd34d;font-size:11px;font-weight:bold;">∴ All A are C?</div>
+                <div style="display:flex;gap:4px;margin-top:4px;">
+                    <div style="background:#166534;color:#4ade80;padding:3px 8px;border-radius:4px;font-size:10px;">TRUE</div>
+                </div>
+            </div>`
+    },
+    {
+        id: 'visualmatrix',
+        name: 'Visual Matrix',
+        description: 'Find the missing cell in the pattern grid',
+        scoreLabel: 'Best Score',
+        scoreKey: 'visualmatrix-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/VisualMatrix.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:110px;height:110px;">
+                    ${[1,2,3,4,5,6,7,8,'?'].map(v=>`<div style="background:#1c2438;border-radius:4px;display:flex;align-items:center;justify-content:center;color:${v==='?'?'#6366f1':'#818cf8'};font-size:14px;font-weight:bold;">${v}</div>`).join('')}
+                </div>
+            </div>`
+    },
+    {
+        id: 'spatialrotation',
+        name: 'Spatial Rotation',
+        description: 'Find the rotated version of the shape',
+        scoreLabel: 'Best Score',
+        scoreKey: 'spatialrotation-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/SpatialRotation.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;gap:16px;flex-direction:column;">
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;width:60px;height:60px;">
+                    ${[1,0,0,0,1,1,0,0,0,1,0,0,0,1,0,0].map(v=>`<div style="background:${v?'#6366f1':'rgba(255,255,255,0.04)'};border-radius:2px;"></div>`).join('')}
+                </div>
+                <div style="color:#64748b;font-size:11px;">Which rotation matches?</div>
+            </div>`
+    },
+    {
+        id: 'taskswitch',
+        name: 'Task Switch',
+        description: 'Alternate between ODD/EVEN and HIGH/LOW',
+        scoreLabel: 'Best Score',
+        scoreKey: 'taskswitch-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/TaskSwitch.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:10px;">
+                <div style="color:#818cf8;font-size:12px;">ODD or EVEN?</div>
+                <div style="font-size:3rem;font-weight:bold;color:#fcd34d;">7</div>
+                <div style="display:flex;gap:8px;">
+                    <div style="background:#2d3561;color:#c8d0df;padding:5px 12px;border-radius:6px;font-size:11px;">ODD</div>
+                    <div style="background:#1c2438;color:#4a5568;padding:5px 12px;border-radius:6px;font-size:11px;">EVEN</div>
+                </div>
+            </div>`
+    },
+    {
+        id: 'speedmatch',
+        name: 'Speed Match',
+        description: 'Rapid same/different perceptual judgments',
+        scoreLabel: 'Best Score',
+        scoreKey: 'speedmatch-best',
+        scoreDefault: 0,
+        category: 'iq',
+        module: () => import('../games/SpeedMatch.js'),
+        previewHTML: `
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1a1a2e;border-radius:10px;flex-direction:column;gap:10px;">
+                <div style="color:#818cf8;font-size:12px;">Same SHAPE?</div>
+                <div style="display:flex;gap:20px;align-items:center;">
+                    <span style="color:#e74c3c;font-size:2.5rem;">★</span>
+                    <span style="color:#3498db;font-size:2.5rem;">★</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                    <div style="background:#166534;color:#4ade80;padding:4px 10px;border-radius:6px;font-size:11px;">SAME</div>
+                    <div style="background:#1c2438;color:#4a5568;padding:4px 10px;border-radius:6px;font-size:11px;">DIFF</div>
+                </div>
+            </div>`
     }
 ];
