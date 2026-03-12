@@ -12,6 +12,7 @@ export default class PongGame {
         this.ball = { x: 300, y: 200, radius: 10, dx: 5, dy: 3 };
         this.keys = {};
         this.gameRunning = false;
+        this.mode = 'computer';
         this.setupUI();
         this.setupControls();
         this.gameLoop();
@@ -20,11 +21,15 @@ export default class PongGame {
     setupUI() {
         document.getElementById('gameContainer').innerHTML = `
             <h2 class="game-title">Pong</h2>
-            <div class="game-info">
-                <div class="score-display"><div class="score-label">You</div><div class="score-value" id="pongScore1">0</div></div>
-                <div class="score-display"><div class="score-label">AI</div><div class="score-value" id="pongScore2">0</div></div>
+            <div class="mode-selector">
+                <button class="mode-btn active" id="pongModeComputer">vs Computer</button>
+                <button class="mode-btn" id="pongModeMulti">2 Players</button>
             </div>
-            <div class="game-instructions">W/S keys to move | First to 5 wins</div>
+            <div class="game-info">
+                <div class="score-display"><div class="score-label" id="pongP1Label">You</div><div class="score-value" id="pongScore1">0</div></div>
+                <div class="score-display"><div class="score-label" id="pongP2Label">AI</div><div class="score-value" id="pongScore2">0</div></div>
+            </div>
+            <div class="game-instructions" id="pongInstructions">W/S keys to move | First to 5 wins</div>
             <div class="pong-container">
                 ${this.canvas.outerHTML}
                 <div class="game-controls">
@@ -37,6 +42,27 @@ export default class PongGame {
         this.ctx = this.canvas.getContext('2d');
         document.getElementById('pongStartBtn').addEventListener('click', () => this.start());
         document.getElementById('pongResetBtn').addEventListener('click', () => this.reset());
+        document.getElementById('pongModeComputer').addEventListener('click', () => this.setMode('computer'));
+        document.getElementById('pongModeMulti').addEventListener('click', () => this.setMode('multiplayer'));
+    }
+
+    setMode(mode) {
+        this.mode = mode;
+        document.getElementById('pongModeComputer').classList.toggle('active', mode === 'computer');
+        document.getElementById('pongModeMulti').classList.toggle('active', mode === 'multiplayer');
+        const p2Label = document.getElementById('pongP2Label');
+        const p1Label = document.getElementById('pongP1Label');
+        const instructions = document.getElementById('pongInstructions');
+        if (mode === 'multiplayer') {
+            p1Label.textContent = 'P1';
+            p2Label.textContent = 'P2';
+            instructions.textContent = 'P1: W/S keys | P2: ↑/↓ keys | First to 5 wins';
+        } else {
+            p1Label.textContent = 'You';
+            p2Label.textContent = 'AI';
+            instructions.textContent = 'W/S keys to move | First to 5 wins';
+        }
+        this.reset();
     }
 
     setupControls() {
@@ -54,9 +80,16 @@ export default class PongGame {
         if (!this.gameRunning) return;
         if (this.keys['w'] && this.paddle1.y > 0) this.paddle1.y -= 7;
         if (this.keys['s'] && this.paddle1.y < this.canvas.height - this.paddle1.height) this.paddle1.y += 7;
-        const p2c = this.paddle2.y + this.paddle2.height / 2;
-        if (this.ball.y < p2c - 5 && this.paddle2.y > 0) this.paddle2.y -= 5;
-        else if (this.ball.y > p2c + 5 && this.paddle2.y < this.canvas.height - this.paddle2.height) this.paddle2.y += 5;
+
+        if (this.mode === 'multiplayer') {
+            if (this.keys['arrowup'] && this.paddle2.y > 0) this.paddle2.y -= 7;
+            if (this.keys['arrowdown'] && this.paddle2.y < this.canvas.height - this.paddle2.height) this.paddle2.y += 7;
+        } else {
+            const p2c = this.paddle2.y + this.paddle2.height / 2;
+            if (this.ball.y < p2c - 5 && this.paddle2.y > 0) this.paddle2.y -= 5;
+            else if (this.ball.y > p2c + 5 && this.paddle2.y < this.canvas.height - this.paddle2.height) this.paddle2.y += 5;
+        }
+
         this.ball.x += this.ball.dx;
         this.ball.y += this.ball.dy;
         if (this.ball.y <= this.ball.radius || this.ball.y >= this.canvas.height - this.ball.radius) this.ball.dy = -this.ball.dy;
@@ -96,6 +129,7 @@ export default class PongGame {
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.fillStyle = '#3498db';
         this.ctx.fillRect(this.paddle1.x, this.paddle1.y, this.paddle1.width, this.paddle1.height);
+        this.ctx.fillStyle = this.mode === 'multiplayer' ? '#e67e22' : '#3498db';
         this.ctx.fillRect(this.paddle2.x, this.paddle2.y, this.paddle2.width, this.paddle2.height);
         this.ctx.fillStyle = '#e74c3c';
         this.ctx.beginPath();
@@ -110,8 +144,10 @@ export default class PongGame {
             this.ctx.font = '24px Arial'; this.ctx.textAlign = 'center';
             if (this.paddle1.score === 0 && this.paddle2.score === 0) {
                 this.ctx.fillText('Click Start!', 300, 200);
+            } else if (this.paddle1.score >= 5) {
+                this.ctx.fillText(this.mode === 'multiplayer' ? 'Player 1 Wins!' : 'You Win! 🎉', 300, 200);
             } else {
-                this.ctx.fillText(this.paddle1.score >= 5 ? 'You Win! 🎉' : 'AI Wins!', 300, 200);
+                this.ctx.fillText(this.mode === 'multiplayer' ? 'Player 2 Wins!' : 'AI Wins!', 300, 200);
             }
         }
     }
